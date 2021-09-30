@@ -1,0 +1,17 @@
+{
+    "name": "projetcovid/slim3",
+    "autoload": {
+        "psr-4": {
+            "Projetcovid\\Slim3\\": "public/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wilt Lilian",
+            "email": "lilian.wilt@hotmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "3.*"
+    }
+}

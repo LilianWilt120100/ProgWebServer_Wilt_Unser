@@ -1,2 +1,3 @@
-src/vendor/*
+Covid_App/vendor
+Covid_App/composer.lock
 .idea

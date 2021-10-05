@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-class User {
+use Illuminate\Database\Eloquent\Model;
 
-    public function __construct()
-    {
+class User extends Illuminate\Database\Eloquent\Model {
+
+    public function __construct() {
         
     }
-
 
 
 }

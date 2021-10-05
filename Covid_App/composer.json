@@ -2,6 +2,6 @@
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
-        "doctrine/orm": "^2.10"
+        "illuminate/database": "^8.62"
     }
 }

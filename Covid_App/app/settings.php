@@ -5,7 +5,7 @@ declare(strict_types=1);
 use DI\ContainerBuilder;
 use MongoLog\Logger;
 
-return function (ContainerBuilder $containerBuilder){
+return function(ContainerBuilder $containerBuilder){
     $containerBuilder->addDefinitions([
 
     'settings' => [

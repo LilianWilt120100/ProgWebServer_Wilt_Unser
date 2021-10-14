@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 12 oct. 2021 à 10:48
+-- Généré le : jeu. 14 oct. 2021 à 10:03
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.10
 
@@ -47,6 +47,17 @@ CREATE TABLE `annonces` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `appartient`
+--
+
+CREATE TABLE `appartient` (
+  `idGroup` int(11) NOT NULL,
+  `identifiant` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `groupes`
 --
 
@@ -82,8 +93,7 @@ CREATE TABLE `users` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `age` int(11) NOT NULL,
-  `estContamine` tinyint(1) NOT NULL,
-  `idGroupe` int(11) NOT NULL
+  `estContamine` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -101,6 +111,13 @@ ALTER TABLE `amis`
 -- Index pour la table `annonces`
 --
 ALTER TABLE `annonces`
+  ADD PRIMARY KEY (`idGroup`,`identifiant`),
+  ADD KEY `identifiant` (`identifiant`);
+
+--
+-- Index pour la table `appartient`
+--
+ALTER TABLE `appartient`
   ADD PRIMARY KEY (`idGroup`,`identifiant`),
   ADD KEY `identifiant` (`identifiant`);
 
@@ -123,8 +140,7 @@ ALTER TABLE `messages`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`identifiant`),
-  ADD KEY `idGroupe` (`idGroupe`);
+  ADD PRIMARY KEY (`identifiant`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -155,6 +171,13 @@ ALTER TABLE `annonces`
   ADD CONSTRAINT `annonces_ibfk_2` FOREIGN KEY (`idGroup`) REFERENCES `groupes` (`idGroup`);
 
 --
+-- Contraintes pour la table `appartient`
+--
+ALTER TABLE `appartient`
+  ADD CONSTRAINT `appartient_ibfk_1` FOREIGN KEY (`identifiant`) REFERENCES `users` (`identifiant`),
+  ADD CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`idGroup`) REFERENCES `groupes` (`idGroup`);
+
+--
 -- Contraintes pour la table `messages`
 --
 ALTER TABLE `messages`
@@ -168,7 +191,9 @@ ALTER TABLE `messages`
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`idGroupe`) REFERENCES `groupes` (`idGroup`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`identifiant`) REFERENCES `appartient` (`identifiant`),
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`identifiant`) REFERENCES `amis` (`identifiant1`),
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`identifiant`) REFERENCES `amis` (`identifiant2`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

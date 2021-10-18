@@ -6,6 +6,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\controls\ControlUsers;
+use App\controls\ControlGroups;
+use App\controls\ControlAmis;
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -37,5 +40,13 @@ $app->get('/', function (Request $request, Response $responce, $parameters) {
 });
 
 $app->get('/users', App\controls\ControlUsers::class . ':allUsers');
+$app->get('/groups', App\controls\ControlGroups::class . ':allGroups');
+$app->get('/friends', App\controls\ControlAmis::class . ':allAmis');
+$app->get('/annonces', App\controls\ControlAnnonces::class . ':allAnnonces');
+$app->get('/messages', App\controls\ControlMessages::class . ':allMessages');
+
+
+
+
 
 $app->run();

@@ -11,7 +11,7 @@ class ControlUsers
     {
         $u = Users::all();
         foreach (Users::all() as $users) {
-            echo $users->identifiant;
+            echo ($users->identifiant."    ".$users->nom."\n");
         }
         $rs->getBody()->write(' ------- >for users');
 		return $rs;

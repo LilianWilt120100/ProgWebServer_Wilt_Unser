@@ -1,26 +1,41 @@
 <?php
 
-use App\Models\User;
+use App\Models\Users;
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\controls\ControlUsers;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$db = new \Illuminate\Database\Capsule\Manager();
-$db->addConnection(parse_ini_file('../app/config/config.ini'));
+$db = new Capsule();
+$db->addConnection(array(
+ 
+	'driver'    => 'mysql',		 
+	'host'      => 'localhost',		 
+	'database'  => 'covid_app',		 
+	'username'  => 'root',		 
+	'password'  => '',		 
+	'charset'   => 'utf8',		 
+	'collation' => 'utf8_unicode_ci',		 
+	'prefix'    => ''
+ 
+));
+
 $db->setAsGlobal();
 $db->bootEloquent();
 
+
 $app = AppFactory::create();
 
-if($db::connection()->getDatabaseName())
-   {
-     echo "Connected sucessfully to database ".$db::connection()->getDatabaseName();
-   }
+
+
 $app->get('/', function (Request $request, Response $responce, $parameters) {
-    $responce->getBody()->write('  Hello World !');
+    $responce->getBody()->write(' Hello World !');
     return $responce;
 });
+
+$app->get('/users', App\controls\ControlUsers::class . ':allUsers');
 
 $app->run();

@@ -1,8 +1,8 @@
 <?php
-namespace App\controls;
-use App\models\Messages;
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+namespace App\Controls;
+use App\Models\Messages;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class ControlMessages
 {

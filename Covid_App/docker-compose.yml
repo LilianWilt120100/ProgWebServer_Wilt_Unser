@@ -1,14 +1,14 @@
 version: '3.8'
 services:
-    php-apache-environment:
+    php:
         container_name: covid-apache
         build:
-            context: ./Docker
-            dockerfile: Dockerfile
+            context: ./docker
+            dockerfile: covid_app.Dockerfile
         depends_on:
             - db
         volumes:
-            - ./php/src:/var/www/html/
+            - ./:/var/www/html/
         ports:
             - 8000:80
     db:
@@ -16,10 +16,10 @@ services:
         image: mysql
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-            MYSQL_DATABASE: MYSQL_DATABASE
-            MYSQL_USER: MYSQL_USER
-            MYSQL_PASSWORD: MYSQL_PASSWORD
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         ports:
             - "9906:3306"
     phpmyadmin:
@@ -31,3 +31,7 @@ services:
             PMA_HOST: db
         depends_on:
             - db
+    composer:
+        image: composer
+        volumes:
+            - ./:/var/www/html/

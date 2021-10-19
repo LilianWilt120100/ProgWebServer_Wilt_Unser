@@ -1,6 +1,6 @@
 <?php
 
-namespace App\vues;
+namespace App\Vues;
 
 class VueUsers {
 

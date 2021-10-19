@@ -7,10 +7,11 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
+            "app\\": "src/",
             "models\\" : "models/",
             "config\\" : "config/",
-            "controls\\" : "controls/"
+            "controls\\" : "controls/",
+            "docker\\" : "docker/"
         }
     }
 }

@@ -10,9 +10,9 @@ class ControlUsers
     public function allUsers(Request $rq, Response $rs, $args) : Response
     {
         foreach (Users::all() as $users) {
-            echo ($users->identifiant."    ".$users->nom."\n");
+            echo ("Identifiant : ".$users->identifiant." ; Nom : ".$users->nom. " ; Prénom : ".$users->prenom."\n");
         }
-        $rs->getBody()->write(' ------- >for users');
+        $rs->getBody()->write(' -------> for users table');
 		return $rs;
     }
 

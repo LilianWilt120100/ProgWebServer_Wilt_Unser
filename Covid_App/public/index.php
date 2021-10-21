@@ -25,14 +25,10 @@ $db->addConnection(array(
 	'prefix'    => ''
  
 ));
-
 $db->setAsGlobal();
 $db->bootEloquent();
 
-
 $app = AppFactory::create();
-
-
 
 $app->get('/', function (Request $request, Response $responce, $parameters) {
     $responce->getBody()->write(' Hello World !');
@@ -44,9 +40,5 @@ $app->get('/groups', ControlGroups::class . ':allGroups');
 $app->get('/friends', ControlAmis::class . ':allAmis');
 $app->get('/annonces', ControlAnnonces::class . ':allAnnonces');
 $app->get('/messages', ControlMessages::class . ':allMessages');
-
-
-
-
 
 $app->run();

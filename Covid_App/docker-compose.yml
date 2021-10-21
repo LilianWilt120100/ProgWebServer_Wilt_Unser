@@ -20,9 +20,12 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes :
+            - ./databases/schema/covid_app.sql:/docker-entrypoint-initdb.d/covid_app.sql
         ports:
             - "9906:3306"
     phpmyadmin:
+        container_name : phpmyadmin
         image: phpmyadmin/phpmyadmin
         ports:
         - '8080:80'
@@ -32,6 +35,7 @@ services:
         depends_on:
             - db
     composer:
-        image: composer
+        container_name : composer
+        image: composer:latest
         volumes:
             - ./:/var/www/html/

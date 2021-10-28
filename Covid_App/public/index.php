@@ -13,6 +13,8 @@ use App\Controls\ControlMessages;
 require __DIR__ . '/../vendor/autoload.php';
 
 $db = new Capsule();
+// Configuration de docker compose
+/*
 $db->addConnection(array(
  
 	'driver'    => 'mysql',		 
@@ -20,6 +22,20 @@ $db->addConnection(array(
 	'database'  => 'covid_app',		 
 	'username'  => 'unutilisateur',		 
 	'password'  => 'lemotdepasse',	 
+	'charset'   => 'utf8',		 
+	'collation' => 'utf8_unicode_ci',		 
+	'prefix'    => ''
+ 
+));
+*/
+// Configuration normal 
+$db->addConnection(array(
+ 
+	'driver'    => 'mysql',		 
+	'host'      => 'localhost',		 
+	'database'  => 'covid_app',		 
+	'username'  => 'root',		 
+	'password'  => '',	 
 	'charset'   => 'utf8',		 
 	'collation' => 'utf8_unicode_ci',		 
 	'prefix'    => ''

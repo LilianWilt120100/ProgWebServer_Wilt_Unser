@@ -1,19 +1,22 @@
-version: '3.8'
+version: '3.9'
 services:
     php:
         container_name: covid-apache
         build:
             context: ./docker
             dockerfile: covid_app.Dockerfile
-        depends_on:
-            - db
+        image: php:8.0-apache
         volumes:
             - ./:/var/www/html/
         ports:
             - 8000:80
+        networks:
+            default:
+                aliases:
+                    - covid-apache     
     db:
         container_name: db
-        image: mysql
+        image: mysql:latest
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -22,8 +25,13 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         volumes :
             - ./databases/schema/covid_app.sql:/docker-entrypoint-initdb.d/covid_app.sql
+            - ./data:/var/lib/mysql
         ports:
             - "9906:3306"
+        networks:
+            default:
+                aliases:
+                    - db
     phpmyadmin:
         container_name : phpmyadmin
         image: phpmyadmin/phpmyadmin
@@ -34,8 +42,16 @@ services:
             PMA_HOST: db
         depends_on:
             - db
+
     composer:
         container_name : composer
         image: composer:latest
         volumes:
             - ./:/var/www/html/
+        networks:
+            default:
+                aliases:
+                    - composer
+networks:
+    default:
+        external: false

@@ -16,10 +16,10 @@ $db = new Capsule();
 $db->addConnection(array(
  
 	'driver'    => 'mysql',		 
-	'host'      => 'localhost',		 
+	'host'      => 'db',		 
 	'database'  => 'covid_app',		 
-	'username'  => 'root',		 
-	'password'  => '',		 
+	'username'  => 'unutilisateur',		 
+	'password'  => 'lemotdepasse',	 
 	'charset'   => 'utf8',		 
 	'collation' => 'utf8_unicode_ci',		 
 	'prefix'    => ''
@@ -27,6 +27,7 @@ $db->addConnection(array(
 ));
 $db->setAsGlobal();
 $db->bootEloquent();
+
 
 $app = AppFactory::create();
 

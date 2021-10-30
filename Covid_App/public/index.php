@@ -1,9 +1,14 @@
 <?php
 
+session_start();
+
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use App\middleware\cors;
+use DI\Container;
+use Slim\Csrf\Guard;
 use App\Controls\ControlUsers;
 use App\Controls\ControlGroups;
 use App\Controls\ControlAmis;
@@ -44,8 +49,25 @@ $db->addConnection(array(
 $db->setAsGlobal();
 $db->bootEloquent();
 
-
+$container = new Container();
+AppFactory::setContainer($container);
 $app = AppFactory::create();
+
+// Create Container
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+
+$responseFactory = $app->getResponseFactory();
+
+// Register Middleware On Container
+$container->set('csrf', function () use ($responseFactory) {
+    return new Guard($responseFactory);
+});
+
+// Register Middleware To Be Executed On All Routes
+$app->add('csrf');
+
+// CORS
+$app->add(new cors());
 
 $app->get('/', function (Request $request, Response $responce, $parameters) {
     $responce->getBody()->write(' Hello World !');

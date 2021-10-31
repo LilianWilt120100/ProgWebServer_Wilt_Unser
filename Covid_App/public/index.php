@@ -28,7 +28,7 @@ $db->addConnection(array(
  
 ));
 */
-// Configuration normal 
+// Configuration normal cd 
 $db->addConnection(array(
  
 	'driver'    => 'mysql',		 

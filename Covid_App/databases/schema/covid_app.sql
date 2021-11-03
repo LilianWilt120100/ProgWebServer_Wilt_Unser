@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 30 oct. 2021 à 14:32
+-- Généré le : mer. 03 nov. 2021 à 06:12
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.10
 
@@ -101,7 +101,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`identifiant`, `mdp`, `localisation`, `nom`, `prenom`, `age`, `estContamine`) VALUES
-('unser1u', 'ed9c43219929', 'null', 'Unser', 'Kévin', 21, 0);
+('JND', 'toto', NULL, 'DUPOND', 'Jean', 32, 0),
+('LeBGdu88', 'tata', NULL, 'PETIT', 'Bernard', 24, 0);
 
 --
 -- Index pour les tables déchargées

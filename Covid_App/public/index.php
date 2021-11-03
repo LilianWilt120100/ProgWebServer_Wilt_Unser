@@ -74,6 +74,8 @@ $app->get('/', function (Request $request, Response $responce, $parameters) {
     return $responce;
 });
 
+$app->get('/register', ControlUsers::class . ':inscription');
+$app->get('/login', ControlUsers::class . ':connexion');
 $app->get('/users', ControlUsers::class . ':allUsers');
 $app->get('/groups', ControlGroups::class . ':allGroups');
 $app->get('/friends', ControlAmis::class . ':allAmis');

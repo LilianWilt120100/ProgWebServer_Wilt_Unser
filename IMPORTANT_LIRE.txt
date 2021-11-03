@@ -1,0 +1,7 @@
+Commande sans le docker : 
+- Ce placer dans le répertoire covid_app et taper : php -S localhost:8080 -t public
+
+Commande pour construire le docker
+- Ce placer dans le répertoire covid-app et taper : docker compose up --build
+- Avant chaque build vérifier que le répertoire "data" est bien vide afin que la base de données soit initialisée.
+- Lancer le conteneur docker depuis VS Code ou Docker dekstop pour plus de rapidité (php:8.0-apache covid-app)

@@ -19,7 +19,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $db = new Capsule();
 // Configuration de docker compose
-/*
 $db->addConnection(array(
  
 	'driver'    => 'mysql',		 
@@ -32,8 +31,9 @@ $db->addConnection(array(
 	'prefix'    => ''
  
 ));
-*/
-// Configuration normal cd 
+
+// Configuration normal 
+/*
 $db->addConnection(array(
  
 	'driver'    => 'mysql',		 
@@ -46,6 +46,7 @@ $db->addConnection(array(
 	'prefix'    => ''
  
 ));
+*/
 $db->setAsGlobal();
 $db->bootEloquent();
 
